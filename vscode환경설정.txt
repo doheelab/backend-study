@@ -1,0 +1,4 @@
+APEPL (variable explorer)
+python docstring
+kite 
+Visual Studio IntelliCode
