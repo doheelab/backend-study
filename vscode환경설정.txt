@@ -2,3 +2,13 @@ APEPL (variable explorer)
 python docstring
 kite 
 Visual Studio IntelliCode
+
+----------- settings.json -------
+"python.formatting.provider": "black",
+"[javascript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"[html]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+-----------------------------------
