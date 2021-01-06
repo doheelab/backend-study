@@ -107,3 +107,46 @@ Visual Studio IntelliCode
     "when": "editorTextFocus && python.datascience.featureenabled && python.datascience.ownsSelection && !findInputFocussed && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
   }
 ]
+
+
+--------- settings.json-----------
+
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "explorer.confirmDelete": false,
+  "python.dataScience.askForKernelRestart": false,
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "javascript.preferences.quoteStyle": "single",
+  "terminal.integrated.inheritEnv": false,
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "terminal.integrated.fontWeight": "bold",
+  "editor.fontWeight": "500",
+  "[json]": {},
+  "editor.tokenColorCustomizations": {
+    "comments": "#ffc6b3"
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  "prettier.singleQuote": true,
+  "kite.showWelcomeNotificationOnStartup": false,
+  "prettier.jsxSingleQuote": true,
+  "python.formatting.provider": "black",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.dataScience.sendSelectionToInteractiveWindow": true,
+  "python.pythonPath": "/home/dohee/anaconda3/envs/stargan-v2/bin/python",
+  "output.smartScroll.enabled": false,
+  "latex-workshop.view.pdf.viewer": "tab"
+  // "editor.formatOnSave": true
+}
+
