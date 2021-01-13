@@ -3,3 +3,9 @@
 ## Data Crawling 관련
 
 > Beautifulsoup4
+
+## Python 관련
+
+> class
+
+> debug
