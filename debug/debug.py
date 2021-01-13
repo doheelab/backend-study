@@ -10,8 +10,7 @@ class User:
         return self._email
 
     def do_something(self):
-        print("Hi from " + str(self))
-
+        pass
     def __str__(self):
         return self._name + ", " + self._email
 
