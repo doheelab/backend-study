@@ -44,8 +44,6 @@ for page in range(1, mpNum + 1):
             )
 
 
-#%%
-
 # reference: https://jeongwookie.github.io/2019/03/18/190318-naver-finance-data-crawling-using-python/
 
 import requests
@@ -72,7 +70,10 @@ def get_price(company_code):
 # 삼성전자 회사 코드는 "005930"
 # 셀트리온 회사 코드는 "068270"
 company_codes = ["263750", "005930", "068270"]
+company_code = company_codes[0]
 
-for item in company_codes:
-    now_price = get_price(item)
+for company_code in company_codes:
+    now_price = get_price(company_code)
     print(now_price)
+
+# %%
