@@ -9,3 +9,21 @@
 > class
 
 > debug
+
+## Recommender System
+
+- collaborative filtering
+
+- Approximate NN search
+
+- LambdaMART
+
+- Metrics (MRR@25)
+
+- Hyperparameter Matter
+
+## Natural Language Processing
+
+- prod2vec (Skipgram)
+
+- FastText
