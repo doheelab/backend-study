@@ -37,3 +37,6 @@
   - -2σ to 3σ: 95%
 
   - -3σ to 3σ: 99%
+
+- Z-score: # of std from the mean
+

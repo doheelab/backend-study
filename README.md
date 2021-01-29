@@ -1,18 +1,9 @@
 # Backend 스터디 내용 정리
 
-## Data Crawling 관련
-
-> Beautifulsoup4
-
-## Python 관련
-
-> class
-
-> debug
 
 ## Recommender System
 
-- collaborative filtering
+- Collaborative Filtering
 
 - Approximate NN search
 
@@ -27,3 +18,25 @@
 - prod2vec (Skipgram)
 
 - FastText
+
+## Machine Learning
+
+- Variational AutoEncoder
+
+## Statistics
+
+> KL-divergence
+
+## Data Visualization
+
+- t-SNE
+
+## Data Crawling 관련
+
+> Beautifulsoup4
+
+## Python 관련
+
+> class
+
+> debug
