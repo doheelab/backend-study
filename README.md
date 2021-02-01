@@ -1,6 +1,5 @@
 # Backend 스터디 내용 정리
 
-
 ## Recommender System
 
 - Collaborative Filtering
@@ -15,6 +14,8 @@
 
 ## Natural Language Processing
 
+- word2vec
+
 - prod2vec (Skipgram)
 
 - FastText
@@ -26,6 +27,10 @@
 ## Statistics
 
 > KL-divergence
+
+> Hypothesis Test
+
+> Bayes' Rule
 
 ## Data Visualization
 
