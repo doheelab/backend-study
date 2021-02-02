@@ -36,7 +36,7 @@
 
 - t-SNE
 
-## Data Crawling 관련
+## Data Crawling
 
 > Beautifulsoup4
 
@@ -45,3 +45,7 @@
 > class
 
 > debug
+
+## Git
+
+> Github
