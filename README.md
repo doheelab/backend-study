@@ -10,15 +10,25 @@
 
 - Metrics (MRR@25)
 
-- Hyperparameter Matter
-
 ## Natural Language Processing
 
 - word2vec
 
+- food2vec
+
 - prod2vec (Skipgram)
 
 - FastText
+
+- Blog Post
+
+  - Building a Strong Baseline Recommender in PyTorch, on a Laptop
+
+- Paper Review
+
+  - Word2vec applied to Recommendation: Hyperparameters Matter
+
+  - Distributed Representations of Words and Phrases and their Compositionality
 
 ## Machine Learning
 

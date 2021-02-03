@@ -10,6 +10,16 @@
 
 ![skipgram](https://wikidocs.net/images/page/22660/word2vec_renew_6.PNG)
 
+# Newgative Sampling
+
+- negative sample는 몇개만 뽑아서 학습
+
+- 자주 등장한 단어를 높은 확률로 선택되도록 샘플링: 자주 등장한 단어만큼은 제대로 학습을 하려함
+
+- pos, neg sample의 이동량은 다르다. (크고, 작다)
+
 # References
 
 https://wikidocs.net/22660
+
+https://lovit.github.io/nlp/representation/2018/03/26/word_doc_embedding/
