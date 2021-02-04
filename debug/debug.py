@@ -1,5 +1,6 @@
 class User:
     def __init__(self, name, email):
+        # Add a condition under which the execution is stopped
         self._name = name
         self._email = email
 
@@ -10,7 +11,10 @@ class User:
         return self._email
 
     def do_something(self):
+        # print("Hi from " + str(self)) -> edit logpoint, log message (in debug console)
+        # raise ValueError() -> Check Raised Exceptions
         pass
+
     def __str__(self):
         return self._name + ", " + self._email
 
