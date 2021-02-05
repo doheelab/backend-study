@@ -1,6 +1,3 @@
----
-html header: <script type="text/javascript"  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
----
 
 ## Introduction
 
@@ -22,20 +19,42 @@ $$
 q_{j|i} = \frac{e^{-|y_i-y_j|^2}}{\sum_k e^{-|y_i-y_k|^2}}
 $$
 
-- $p$는 고차원 원공간에 존재하는 $i$번째 개체 $x_i$가 주어졌을 때 $j$번째 이웃인 $x_j$가 선택될 확률
+- $p$는 **고차원 원공간에 존재**하는 $i$번째 개체 $x_i$가 주어졌을 때 $j$번째 이웃인 $x_j$가 선택될 확률
 
-- $q$는 저차원 임베딩에서 존재하는 $i$번째 개체 $y_i$가 주어졌을 때 $j$번째 이웃인 $y_j$가 선택될 확률
+- $q$는 **저차원 임베딩에서 존재**하는 $i$번째 개체 $y_i$가 주어졌을 때 $j$번째 이웃인 $y_j$가 선택될 확률
 
 - SNE의 목적은 p와 q의 분포 차이가 최대한 작게 하는 것
 
-## Kullback-Leibler divergence(KL divergence)
+## Cost function
 
+$$
+\begin{aligned}
+Cost =& \sum_i KL(P_{i} || Q_{i}) \\
+ = & \sum_i \sum_j p_{j|i} \log \left(\frac{p_{j|i}}{q_{j|i}} \right)
+\end{aligned}
+$$
 
+계산 속도를 높이기 위해, $\sigma_i$ 를 고정하고, $p_{i|j} = p_{j|i}$를 가정한다.
 
+$$
+p_{ij} = \frac{p_{j|i}+p_{i|j}}{2}, q_{ij} = \frac{q_{j|i}+q_{i|j}}{2}
+$$
 
+새로운 비용함수는 다음과 같다.
 
-## Student T Distribution
+$$
+\begin{aligned}
+Cost =& \sum_i KL(P_i || Q_i) \\
+ = & \sum_i \sum_j p_{ij} \log \left(\frac{p_{ij}}{q_{ij}} \right) \\
+ = & 4\sum_j (y_j -y_i)(p_{ij}-q_{ij})
+\end{aligned}
+$$
+
+이에 따라 gradient descent 방식으로 $y_i$들을 업데이트합니다. 
+
 
 # Reference
 
 [PR-103: Visualizing Data using t-SNE] https://www.youtube.com/watch?v=zpJwm7f7EXs
+
+[t-SNE] https://ratsgo.github.io/machine%20learning/2017/04/28/tSNE/

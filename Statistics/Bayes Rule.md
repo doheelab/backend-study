@@ -1,20 +1,28 @@
 
-## Example) 피부색의 밝기를 통해 농어, 연어 구분하기
+## 베이즈 정리
 
-- 피부색의 밝기 $x$
-
-- 물고기가 농어일 사건 $w=w_1$
-
-- 물고기가 연어일 사건 $w=w_2$
-
->물고기의 피부 밝기가 0.5일 때, 그 물고기가 농어일 확률
+베이즈 정리는 사전확률과 사후확률 사이의 관계를 나타내는 정리
 
 $$
-P(w_1 |x=0.5)
+P(H|E) = \frac{P(E|H)P(H)}{P(E)}
 $$
 
-* $P(w_1|x)>P(w_2|x)$라면 농어로 분류한다.
+$P(E)$: 사전 확률, $P(H|E)$: 사후 확률
+
+새로운 정보(E)를 토대로 어떤 사건(H)이 발생했다는 주장에 대한 신뢰도를 갱신해 나가는 방법이다.
+
+> 가능도 (Likelihood): 관찰을 통해 얻은 확률 분포
+ 
+> Posterior = (Likelihood $\times$ Prior)/Evidence
+
+$$
+P(w_i|x) = \frac{P(x|w_i)P(w_i)}{\sum_j P(x|w_j)P(w_j)}
+$$
+
+![BayesRule](https://raw.githubusercontent.com/angeloyeo/angeloyeo.github.io/master/pics/2020-01-09-Bayes_rule/pic1.png)
 
 # Reference
+
+https://angeloyeo.github.io/2020/01/09/Bayes_rule.html
 
 https://hyeongminlee.github.io/post/bnn001_bayes_rule/
