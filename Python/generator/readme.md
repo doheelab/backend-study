@@ -94,35 +94,6 @@ $100
 ...
 ```
 
-## Caller
-
-```python
-
-# Create an empty list and a list with the current object reference
-result, candidates = list(), [self]
-
-# Loop on candidates (they contain only one element at the beginning)
-while candidates:
-
-    # Get the last candidate and remove it from the list
-    node = candidates.pop()
-
-    # Get the distance between obj and the candidate
-    distance = node._get_dist(obj)
-
-    # If distance is ok, then you can fill the result
-    if distance <= max_dist and distance >= min_dist:
-        result.extend(node._values)
-
-    # Add the children of the candidate in the candidate's list
-    # so the loop will keep running until it will have looked
-    # at all the children of the children of the children, etc. of the candidate
-    candidates.extend(node._get_child_candidates(distance, min_dist, max_dist))
-
-return result
-
-```
-
 # Reference
 
 [What does the “yield” keyword do?] https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do/231855#231855
