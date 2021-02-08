@@ -2,7 +2,7 @@
 
 ## Recommender System
 
-- Collaborative Filtering
+- [Collaborative Filtering](https://github.com/doheelab/backend-study/tree/master/Recommender%20System/Collaborative%20Filtering)
 
 - Approximate NN search
 
@@ -12,11 +12,13 @@
 
 ## Natural Language Processing
 
-- word2vec
+- [word2vec](https://github.com/doheelab/backend-study/tree/master/Natural%20Language%20Processing/word2vec)
 
-- food2vec
+- [food2vec](https://github.com/doheelab/backend-study/tree/master/Natural%20Language%20Processing/food2vec)
 
-- prod2vec (Skipgram)
+- [doc2vec](https://github.com/doheelab/backend-study/tree/master/Natural%20Language%20Processing/doc2vec)
+
+- prod2vec
 
 - FastText
 
@@ -26,7 +28,7 @@
 
 - Paper Review
 
-  - Word2vec applied to Recommendation: Hyperparameters Matter
+  - [Word2vec applied to Recommendation: Hyperparameters Matter](https://github.com/doheelab/backend-study/tree/master/Natural%20Language%20Processing/Hyperparameters%20Matter)
 
   - Distributed Representations of Words and Phrases and their Compositionality
 
@@ -36,26 +38,28 @@
 
 ## Statistics
 
-> KL-divergence
+- [KL-divergence](https://github.com/doheelab/backend-study/blob/master/Statistics/KL%20divergence.md)
 
-> Hypothesis Test
+- [Hypothesis Test](https://github.com/doheelab/backend-study/blob/master/Statistics/Hypothesis%20Test.md)
 
-> Bayes' Rule
+* [Bayes' Rule](https://github.com/doheelab/backend-study/blob/master/Statistics/Bayes%20Rule.md)
 
 ## Data Visualization
 
-- t-SNE
-
-## Data Crawling
-
-> Beautifulsoup4
+- [t-SNE](https://github.com/doheelab/backend-study/blob/master/Data%20Visualization/t-sne.md)
 
 ## Python 관련
 
-> class
+- [class](https://github.com/doheelab/backend-study/blob/master/Python/class)
 
-> debug
+- [debug](https://github.com/doheelab/backend-study/tree/master/Python/debug)
+
+- [itertor](https://github.com/doheelab/backend-study/tree/master/Python/iterator)
+
+- [generator](https://github.com/doheelab/backend-study/tree/master/Python/generator)
+
+- [crawling](https://github.com/doheelab/backend-study/tree/master/Python/crawling)
 
 ## Git
 
-> Github
+- [Github](https://github.com/doheelab/backend-study/tree/master/Git)
