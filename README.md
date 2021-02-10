@@ -8,7 +8,7 @@
 
 - LambdaMART
 
-- Metrics (MRR@25)
+- metrics (MRR@25)
 
 ## Natural Language Processing
 
@@ -62,7 +62,9 @@
 
 ## Git
 
-- [Github](https://github.com/doheelab/backend-study/tree/master/Git)
+- [github](https://github.com/doheelab/backend-study/tree/master/Git)
+
+- git stash
 
 ## ETC
 
