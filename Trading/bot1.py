@@ -45,7 +45,7 @@ def practice(ticker):
     can_buy = 1
     idx = 0
     rate = 10
-    stock_num = 2
+    stock_num = 4
     bought = 0
     sold = 0
     while True:
@@ -119,11 +119,11 @@ def practice(ticker):
                 int(
                     upbit.get_balance(ticker="KRW")
                     + upbit.get_balance(ticker=ticker) * bid_price
-                    + len(to_ask) * bid_price * 2
-                    + np.sum(np.array(to_bid, dtype=float)) * 2
+                    + len(to_ask) * bid_price * stock_num
+                    + np.sum(np.array(to_bid, dtype=float)) * stock_num
                 ),
             )
-        time.sleep(0.2)
+        time.sleep(0.1)
 
         if idx == 600:
 
