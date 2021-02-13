@@ -125,8 +125,9 @@ def practice(ticker):
             )
         time.sleep(0.1)
 
-        if idx == 600:
-
+        if idx == 1200:
+            clear_bid(orders)
+        elif idx == 6000:
             clear_bid(orders)
             clear_ask(orders)
             idx = 0
