@@ -117,7 +117,7 @@ def practice(ticker):
         if len(recent_ask_size) > 5:
             recent_ask_size = recent_ask_size[1:]
             recent_bid_size = recent_bid_size[1:]
-        if idx > 50:
+        if idx > 25:
             # sell
             sell_intensity = check_decrease(recent_bid_size)
             buy_intensity = check_decrease(recent_ask_size)
@@ -132,8 +132,9 @@ def practice(ticker):
                 else:
                     multiplier = 1
                 multiplier *= trend
-                if sell_coin(ticker, bid_price, coin_num * multiplier):
-                    buy_coin(ticker, bid_price - tick, coin_num * multiplier)
+                amount = int(coin_num * multiplier)
+                if sell_coin(ticker, bid_price, amount):
+                    buy_coin(ticker, bid_price - tick, amount)
                 idx = 0
             # buy
             if (
@@ -146,8 +147,9 @@ def practice(ticker):
                 else:
                     multiplier = 1
                 multiplier *= trend
-                if buy_coin(ticker, ask_price, coin_num * multiplier):
-                    sell_coin(ticker, ask_price + tick, coin_num * multiplier)
+                amount = int(coin_num * multiplier)
+                if buy_coin(ticker, ask_price, amount):
+                    sell_coin(ticker, ask_price + tick, amount)
                 idx = 0
 
         if idx % 50 == 0:
@@ -197,8 +199,9 @@ def practice(ticker):
         #     idx = 0
         if idx == 50:
             diff = benefit - save_benefit
-            trend = np.round(1.5 ** (diff / bid_price), 2)
+            trend = max(np.round(1.5 ** (diff / bid_price), 2), 0.9)
             save_benefit = copy.copy(benefit)
+        elif idx == 3000:
             idx = 0
         idx += 1
 
