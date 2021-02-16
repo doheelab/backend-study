@@ -1,0 +1,9 @@
+1. 거래 intensity를 측정하여, api 호출 횟수 조정
+2. api로 여러 종목 한번에 정보 얻기
+3. Docker를 활용, ec2에 업로드 하기
+
+-------
+그 외
+
+1. Docker
+2. AWS lambda

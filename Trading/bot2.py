@@ -33,34 +33,38 @@ ticker = "KRW-ARDR"  # 아더
 # ticker = "KRW-EMC2"  # 아인스타이늄
 
 tick = 1
-stock_num = 30
+coin_num = 30
 
 buy_list = []
 sell_list = []
 
 # 지정가 매수
-def buy(ticker, price, stock_num):
-    resp = upbit.buy_limit_order(ticker, price, stock_num)  # 티커, 주문가격, 주문량
+def buy_coin(ticker, price, coin_num):
+    resp = upbit.buy_limit_order(ticker, price, coin_num)  # 티커, 주문가격, 주문량
     if "error" in resp:
-        resp2 = upbit.buy_limit_order(ticker, price, stock_num)  # 티커, 주문가격, 주문량
+        resp2 = upbit.buy_limit_order(ticker, price, coin_num)  # 티커, 주문가격, 주문량
         print("매수 오류:", resp["error"], "error" in resp2)
         return False
     else:
-        print("매수:", resp["price"])
+        buy_message = "매수:" + str(resp["price"])
+        print(buy_message)
+        write_record(buy_message)
         return True
 
 
 # 지정가 매도
-def sell(ticker, price, stock_num):
+def sell_coin(ticker, price, coin_num):
     resp = ["error"]
-    resp = upbit.sell_limit_order(ticker, price, stock_num)  # 티커, 주문가격, 주문량
+    resp = upbit.sell_limit_order(ticker, price, coin_num)  # 티커, 주문가격, 주문량
 
     if "error" in resp:
-        resp2 = upbit.sell_limit_order(ticker, price, stock_num)  # 티커, 주문가격, 주문량
+        resp2 = upbit.sell_limit_order(ticker, price, coin_num)  # 티커, 주문가격, 주문량
         print("매도 오류:", resp["error"], "error" in resp2)
         return False
     else:
-        print("매도:", resp["price"])
+        sell_message = "매도:" + str(resp["price"])
+        print(sell_message)
+        write_record(sell_message)
         return True
 
 
@@ -118,11 +122,6 @@ def practice(ticker):
             sell_intensity = check_decrease(recent_bid_size)
             buy_intensity = check_decrease(recent_ask_size)
 
-            # if sell_intensity:
-            #     print("sell chance:", sell_intensity, recent_bid_size)
-            # elif buy_intensity:
-            #     print("buy chance:", buy_intensity, recent_ask_size)
-
             if (
                 ask_size_1 > bid_size_1 * ratio + bid_size_2 * 2
                 and ask_size_1 * 0.5 < ask_size_2
@@ -133,8 +132,8 @@ def practice(ticker):
                 else:
                     multiplier = 1
                 multiplier *= trend
-                if sell(ticker, bid_price, stock_num * multiplier):
-                    buy(ticker, bid_price - tick, stock_num * multiplier)
+                if sell_coin(ticker, bid_price, coin_num * multiplier):
+                    buy_coin(ticker, bid_price - tick, coin_num * multiplier)
                 idx = 0
             # buy
             if (
@@ -147,8 +146,8 @@ def practice(ticker):
                 else:
                     multiplier = 1
                 multiplier *= trend
-                if buy(ticker, ask_price, stock_num * multiplier):
-                    sell(ticker, ask_price + tick, stock_num * multiplier)
+                if buy_coin(ticker, ask_price, coin_num * multiplier):
+                    sell_coin(ticker, ask_price + tick, coin_num * multiplier)
                 idx = 0
 
         if idx % 50 == 0:
