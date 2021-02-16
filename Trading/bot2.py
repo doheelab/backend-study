@@ -131,7 +131,7 @@ def practice(ticker):
                     multiplier = 2
                 else:
                     multiplier = 1
-                multiplier *= trend
+                # multiplier *= trend
                 amount = int(coin_num * multiplier)
                 if sell_coin(ticker, bid_price, amount):
                     buy_coin(ticker, bid_price - tick, amount)
@@ -177,32 +177,18 @@ def practice(ticker):
                 initialized = 1
 
             benefit = money - init
-            message = f"{money}, {benefit}, {trend} \n"
+            message = f"{money}, {bid_price}, {benefit}, {trend} \n"
             print(message)
             write_record(message)
-        time.sleep(0.2)
-
-        # 일정 이상의 손실
-        # if 300 < save_benefit - benefit:
-        #     will_sell += 1
-        #     if will_sell > 50:
-        #         clear_ask(orders, all=True)
-        #         sell_all(ticker)
-        #         save_benefit = benefit
-        #         will_sell = 0
-        #     else:
-        #         will_sell = 0
-        # elif idx == 0 or idx == 1200:
-        #     save_benefit = copy.copy(benefit)
-        #     # clear_bid(orders)
-        #     # clear_ask(orders)
-        #     idx = 0
-        if idx == 50:
-            diff = benefit - save_benefit
-            trend = max(np.round(1.5 ** (diff / bid_price), 2), 0.9)
+            if abs(benefit - save_benefit) < 1000:
+                diff = benefit - save_benefit
+            else:
+                diff = 0
+            trend = np.clip(np.round(1.5 ** (diff / bid_price), 2), 0.9, 2)
             save_benefit = copy.copy(benefit)
         elif idx == 3000:
             idx = 0
+        time.sleep(0.2)
         idx += 1
 
 
