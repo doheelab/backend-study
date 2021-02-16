@@ -4,7 +4,6 @@ import numpy as np
 import copy
 import datetime
 
-
 from pprint import pprint
 
 from collections import deque
@@ -12,15 +11,10 @@ from collections import deque
 ask_history = deque([])
 bid_history = deque([])
 
-ask_history.append(2)
-
-ask_history[0]
-
-
-f = open("../save/upbit.txt")
+f = open("./save/upbit.txt")
 lines = f.readlines()
 access = lines[0].strip()
-secret = lines[1]
+secret = lines[1].strip()
 f.close()
 
 upbit = pyupbit.Upbit(access, secret)
@@ -195,7 +189,7 @@ def practice(ticker):
 def write_record(message):
     now = datetime.datetime.now()
     today = now.strftime("%m%d")
-    f = open(f"{ticker}-{today}.txt", "a")
+    f = open(f"./record/{ticker}-{today}.txt", "a")
     f.write(message)
     f.close()
 
