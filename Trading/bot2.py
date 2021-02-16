@@ -33,7 +33,7 @@ ticker = "KRW-ARDR"  # 아더
 # ticker = "KRW-EMC2"  # 아인스타이늄
 
 tick = 1
-stock_num = 25
+stock_num = 30
 
 buy_list = []
 sell_list = []
@@ -44,8 +44,10 @@ def buy(ticker, price, stock_num):
     if "error" in resp:
         resp2 = upbit.buy_limit_order(ticker, price, stock_num)  # 티커, 주문가격, 주문량
         print("매수 오류:", resp["error"], "error" in resp2)
+        return False
     else:
         print("매수:", resp["price"])
+        return True
 
 
 # 지정가 매도
@@ -90,7 +92,8 @@ def practice(ticker):
     save_benefit = 0
     recent_ask_size = []
     recent_bid_size = []
-    will_sell = 0
+    diff = 0
+    trend = 1
     while True:
 
         # 호가정보
@@ -106,6 +109,7 @@ def practice(ticker):
         bid_size_2 = orderbook_units[1]["bid_size"]
         recent_ask_size.append(int(ask_size_1))
         recent_bid_size.append(int(bid_size_1))
+
         if len(recent_ask_size) > 5:
             recent_ask_size = recent_ask_size[1:]
             recent_bid_size = recent_bid_size[1:]
@@ -128,6 +132,7 @@ def practice(ticker):
                     multiplier = 2
                 else:
                     multiplier = 1
+                multiplier *= trend
                 if sell(ticker, bid_price, stock_num * multiplier):
                     buy(ticker, bid_price - tick, stock_num * multiplier)
                 idx = 0
@@ -141,6 +146,7 @@ def practice(ticker):
                     multiplier = 2
                 else:
                     multiplier = 1
+                multiplier *= trend
                 if buy(ticker, ask_price, stock_num * multiplier):
                     sell(ticker, ask_price + tick, stock_num * multiplier)
                 idx = 0
@@ -170,23 +176,30 @@ def practice(ticker):
                 initialized = 1
 
             benefit = money - init
-            message = f"{money}, {benefit} \n"
+            message = f"{money}, {benefit}, {trend} \n"
             print(message)
             write_record(message)
         time.sleep(0.2)
 
         # 일정 이상의 손실
-        if 300 < save_benefit - benefit:
-            will_sell += 1
-            if will_sell > 5:
-                clear_ask(orders, all=True)
-                sell_all(ticker)
-                save_benefit = benefit
-                will_sell = 0
-        elif idx == 0 or idx == 1200:
+        # if 300 < save_benefit - benefit:
+        #     will_sell += 1
+        #     if will_sell > 50:
+        #         clear_ask(orders, all=True)
+        #         sell_all(ticker)
+        #         save_benefit = benefit
+        #         will_sell = 0
+        #     else:
+        #         will_sell = 0
+        # elif idx == 0 or idx == 1200:
+        #     save_benefit = copy.copy(benefit)
+        #     # clear_bid(orders)
+        #     # clear_ask(orders)
+        #     idx = 0
+        if idx == 50:
+            diff = benefit - save_benefit
+            trend = np.round(1.5 ** (diff / bid_price), 2)
             save_benefit = copy.copy(benefit)
-            # clear_bid(orders)
-            # clear_ask(orders)
             idx = 0
         idx += 1
 
