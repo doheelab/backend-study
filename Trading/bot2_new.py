@@ -23,11 +23,14 @@ upbit = pyupbit.Upbit(access, secret)
 # ticker = "KRW-ZIL"  # 질리카
 # ticker = "KRW-NPXS"  # 펀디엑스
 # ticker = "KRW-SAND"  # 샌드박스
-ticker = "KRW-ARDR"  # 아더
+# ticker = "KRW-ARDR"  # 아더
 # ticker = "KRW-EMC2"  # 아인스타이늄
+# ticker = "KRW-SNT"  # 스테이터스네트워크토큰
+ticker = "KRW-HBAR"  # 헤데라해시그래프
+
 
 tick = 1
-coin_num = 30
+coin_num = 40
 
 buy_list = []
 sell_list = []
@@ -81,33 +84,23 @@ def check_decrease(recent_prices):
         return 0
 
 
-def get_bid_price(ticker):
-    # 호가정보
-    orderbooks = pyupbit.get_orderbook(ticker)
-    if not orderbooks:
-        return False
-    orderbook_units = orderbooks[0]["orderbook_units"]
-    bid_price = orderbook_units[0]["bid_price"]
-    return bid_price
-
-
-def practice(ticker):
-    ask_price = 0
+def main(ticker):
     idx = 0
-    ratio = 5
     initialized = 0
-    benefit = 0
     save_benefit = 0
     recent_ask_size = []
     recent_bid_size = []
-    diff = 0
     trend = 1
-    while True:
+    init = 0
+
+    def transaction(
+        idx, ticker, recent_ask_size, recent_bid_size, trend, save_benefit, init
+    ):
 
         # 호가정보
         orderbooks = pyupbit.get_orderbook(ticker)
         if not orderbooks:
-            continue
+            return False
         orderbook_units = orderbooks[0]["orderbook_units"]
         ask_price = orderbook_units[0]["ask_price"]
         bid_price = orderbook_units[0]["bid_price"]
@@ -121,31 +114,33 @@ def practice(ticker):
         if len(recent_ask_size) > 5:
             recent_ask_size = recent_ask_size[1:]
             recent_bid_size = recent_bid_size[1:]
+
         if idx > 25:
             # sell
             sell_intensity = check_decrease(recent_bid_size)
             buy_intensity = check_decrease(recent_ask_size)
-
-            if (
-                ask_size_1 > bid_size_1 * ratio + bid_size_2 * 2
+            sell_condition = (
+                ask_size_1 > bid_size_1 * 5 + bid_size_2 * 2
                 and ask_size_1 * 0.5 < ask_size_2
                 and sell_intensity
-            ):
+            )
+
+            buy_condition = (
+                ask_size_1 * 5 + ask_size_2 * 2 < bid_size_1
+                and bid_size_1 * 0.5 < bid_size_2
+                and buy_intensity
+            )
+
+            if sell_condition:
                 if sell_intensity > 2:
                     multiplier = 2
                 else:
                     multiplier = 1
-                # multiplier *= trend
                 amount = int(coin_num * multiplier)
                 if sell_coin(ticker, bid_price, amount):
                     buy_coin(ticker, bid_price - tick, amount)
                 idx = 0
-            # buy
-            if (
-                ask_size_1 * ratio + ask_size_2 * 2 < bid_size_1
-                and bid_size_1 * 0.5 < bid_size_2
-                and buy_intensity
-            ):
+            if buy_condition:
                 if buy_intensity > 2:
                     multiplier = 2
                 else:
@@ -175,11 +170,6 @@ def practice(ticker):
                 + np.sum(to_bid)
             )
 
-            if not initialized:
-                init = money
-                write_record("-----" + str(bid_price) + "원" + "----- \n")
-                initialized = 1
-
             benefit = money - init
             message = f"{money}, {bid_price}, {benefit}, {trend} \n"
             print(message)
@@ -194,6 +184,49 @@ def practice(ticker):
             idx = 0
         time.sleep(0.2)
         idx += 1
+        return (
+            idx,
+            bid_price,
+            recent_ask_size,
+            recent_bid_size,
+            trend,
+            save_benefit,
+        )
+
+    while True:
+        (
+            idx,
+            bid_price,
+            recent_ask_size,
+            recent_bid_size,
+            trend,
+            save_benefit,
+        ) = transaction(
+            idx, ticker, recent_ask_size, recent_bid_size, trend, save_benefit, init
+        )
+        if not initialized:
+            orders = upbit.get_order(ticker)
+            to_bid = [
+                float(order["volume"]) * bid_price
+                for order in orders
+                if order["side"] == "bid"
+            ]
+
+            to_ask = [
+                float(order["volume"]) * bid_price
+                for order in orders
+                if order["side"] == "ask"
+            ]
+
+            init = int(
+                upbit.get_balance(ticker="KRW")
+                + (upbit.get_balance(ticker=ticker)) * bid_price
+                + np.sum(to_ask)
+                + np.sum(to_bid)
+            )
+
+            write_record("-----" + str(bid_price) + "원" + "----- \n")
+            initialized = 1
 
 
 def write_record(message):
@@ -229,4 +262,4 @@ def clear_ask(orders, all=False):
 
 
 if __name__ == "__main__":
-    practice(ticker)
+    main(ticker)
