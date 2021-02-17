@@ -182,7 +182,7 @@ def main(ticker):
             save_benefit = copy.copy(benefit)
         elif idx == 3000:
             idx = 0
-        time.sleep(0.2)
+        time.sleep(0.3)
         idx += 1
         return (
             idx,
@@ -194,16 +194,20 @@ def main(ticker):
         )
 
     while True:
-        (
-            idx,
-            bid_price,
-            recent_ask_size,
-            recent_bid_size,
-            trend,
-            save_benefit,
-        ) = transaction(
-            idx, ticker, recent_ask_size, recent_bid_size, trend, save_benefit, init
-        )
+        try:
+            (
+                idx,
+                bid_price,
+                recent_ask_size,
+                recent_bid_size,
+                trend,
+                save_benefit,
+            ) = transaction(
+                idx, ticker, recent_ask_size, recent_bid_size, trend, save_benefit, init
+            )
+        except Exception as e:
+            print(e)
+            pass
         if not initialized:
             orders = upbit.get_order(ticker)
             to_bid = [

@@ -25,10 +25,10 @@ upbit = pyupbit.Upbit(access, secret)
 # ticker = "KRW-SAND"  # 샌드박스
 # ticker = "KRW-ARDR"  # 아더
 # ticker = "KRW-EMC2"  # 아인스타이늄
-ticker = "KRW-SNT"  # 스테이터스네트워크토큰
+ticker = "KRW-NPXS"  # Fundix
 
-tick = 1
-coin_num = 60
+tick = 0.01
+coin_num = 5500
 
 buy_list = []
 sell_list = []
