@@ -26,7 +26,7 @@ upbit = pyupbit.Upbit(access, secret)
 # ticker = "KRW-ARDR"  # 아더
 # ticker = "KRW-EMC2"  # 아인스타이늄
 # ticker = "KRW-SNT"  # 스테이터스네트워크토큰
-ticker = "KRW-HBAR"  # 헤데라해시그래프
+ticker = "KRW-XRP"  # 리플
 
 
 tick = 1
