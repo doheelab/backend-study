@@ -8,6 +8,9 @@ from pprint import pprint
 
 from collections import deque
 
+# import datetime
+# datetime.datetime.strptime(orders[0]['created_at'],)
+
 ask_history = deque([])
 bid_history = deque([])
 
@@ -18,17 +21,12 @@ secret = lines[1].strip()
 f.close()
 
 upbit = pyupbit.Upbit(access, secret)
-# ticker = "KRW-XRP"  # 리플
-# ticker = "KRW-CVC"  # 시빅
-# ticker = "KRW-ZIL"  # 질리카
-# ticker = "KRW-NPXS"  # 펀디엑스
-# ticker = "KRW-SAND"  # 샌드박스
-# ticker = "KRW-ARDR"  # 아더
-# ticker = "KRW-EMC2"  # 아인스타이늄
-ticker = "KRW-NPXS"  # Fundix
+ticker = "KRW-XRP"  # 리플
+ticker = "KRW-PCI"  # Paycoin
 
-tick = 0.01
-coin_num = 5500
+
+tick = 5
+coin_num = 500
 
 buy_list = []
 sell_list = []
@@ -118,13 +116,13 @@ def main(ticker):
             sell_intensity = check_decrease(recent_bid_size)
             buy_intensity = check_decrease(recent_ask_size)
             sell_condition = (
-                ask_size_1 > bid_size_1 * 5 + bid_size_2 * 2
+                ask_size_1 > bid_size_1 * 3 + bid_size_2
                 and ask_size_1 * 0.5 < ask_size_2
                 and sell_intensity
             )
 
             buy_condition = (
-                ask_size_1 * 5 + ask_size_2 * 2 < bid_size_1
+                ask_size_1 * 3 + ask_size_2 < bid_size_1
                 and bid_size_1 * 0.5 < bid_size_2
                 and buy_intensity
             )
@@ -147,6 +145,7 @@ def main(ticker):
                 amount = int(coin_num * multiplier)
                 if buy_coin(ticker, ask_price, amount):
                     sell_coin(ticker, ask_price + tick, amount)
+
                 idx = 0
 
         if idx % 50 == 0:
@@ -168,6 +167,10 @@ def main(ticker):
                 + np.sum(to_bid)
             )
 
+            for order in orders:
+                if abs(float(order["price"]) - bid_price) > 50:
+                    upbit.cancel_order(uuid=order["uuid"])
+
             benefit = money - init
             message = f"{money}, {bid_price}, {benefit}, {trend} \n"
             print(message)
@@ -178,9 +181,20 @@ def main(ticker):
                 diff = 0
             trend = np.clip(np.round(1.5 ** (diff / bid_price), 2), 0.9, 2)
             save_benefit = copy.copy(benefit)
-        elif idx == 3000:
+        elif idx % 100 == 0:
+
+            # now = datetime.datetime.now()
+            # now_time = datetime.datetime.strptime(now.strftime("%H:%M:%S"), "%H:%M:%S")
+            # for order in orders:
+            #     order_time = datetime.datetime.strptime(
+            #         order["created_at"][11:19], "%H:%M:%S"
+            #     )
+            #     seconds = (now_time - order_time).total_seconds()
+            #     if seconds > 30:
+            #         upbit.cancel_order(uuid=order["uuid"])
+
             idx = 0
-        time.sleep(0.3)
+        time.sleep(0.2)
         idx += 1
         return (
             idx,

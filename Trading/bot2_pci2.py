@@ -18,17 +18,12 @@ secret = lines[1].strip()
 f.close()
 
 upbit = pyupbit.Upbit(access, secret)
-# ticker = "KRW-XRP"  # 리플
-# ticker = "KRW-CVC"  # 시빅
-# ticker = "KRW-ZIL"  # 질리카
-# ticker = "KRW-NPXS"  # 펀디엑스
-# ticker = "KRW-SAND"  # 샌드박스
-# ticker = "KRW-ARDR"  # 아더
-# ticker = "KRW-EMC2"  # 아인스타이늄
-ticker = "KRW-SNT"  # 스테이터스네트워크토큰
+ticker = "KRW-XRP"  # 리플
+ticker = "KRW-PCI"  # Paycoin
 
-tick = 1
-coin_num = 60
+
+tick = 5
+coin_num = 100
 
 buy_list = []
 sell_list = []
@@ -118,13 +113,13 @@ def main(ticker):
             sell_intensity = check_decrease(recent_bid_size)
             buy_intensity = check_decrease(recent_ask_size)
             sell_condition = (
-                ask_size_1 > bid_size_1 * 5 + bid_size_2 * 2
+                ask_size_1 > bid_size_1 * 3 + bid_size_2
                 and ask_size_1 * 0.5 < ask_size_2
                 and sell_intensity
             )
 
             buy_condition = (
-                ask_size_1 * 5 + ask_size_2 * 2 < bid_size_1
+                ask_size_1 * 3 + ask_size_2 < bid_size_1
                 and bid_size_1 * 0.5 < bid_size_2
                 and buy_intensity
             )
@@ -135,7 +130,7 @@ def main(ticker):
                 else:
                     multiplier = 1
                 amount = int(coin_num * multiplier)
-                if sell_coin(ticker, bid_price, amount):
+                if sell_coin(ticker, bid_price + tick, amount):
                     buy_coin(ticker, bid_price - tick, amount)
                 idx = 0
             if buy_condition:
@@ -145,7 +140,7 @@ def main(ticker):
                     multiplier = 1
                 multiplier *= trend
                 amount = int(coin_num * multiplier)
-                if buy_coin(ticker, ask_price, amount):
+                if buy_coin(ticker, ask_price - tick, amount):
                     sell_coin(ticker, ask_price + tick, amount)
                 idx = 0
 
@@ -180,7 +175,7 @@ def main(ticker):
             save_benefit = copy.copy(benefit)
         elif idx == 3000:
             idx = 0
-        time.sleep(0.3)
+        time.sleep(0.2)
         idx += 1
         return (
             idx,

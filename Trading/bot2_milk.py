@@ -14,11 +14,11 @@ secret = lines[1].strip()
 f.close()
 
 upbit = pyupbit.Upbit(access, secret)
-ticker = "KRW-XRP"  # 리플
+ticker = "KRW-MLK"  # mlik
 
 
 tick = 1
-coin_num = 500
+coin_num = 2000
 
 buy_list = []
 sell_list = []
