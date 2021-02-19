@@ -18,7 +18,7 @@ ticker = "KRW-XRP"  # 리플
 
 
 tick = 1
-coin_num = 500
+coin_num = 10
 
 buy_list = []
 sell_list = []
@@ -182,7 +182,7 @@ def main(ticker):
                     order["created_at"][11:19], "%H:%M:%S"
                 )
                 seconds = (now_time - order_time).total_seconds()
-                if seconds > 30:
+                if seconds > 300:
                     upbit.cancel_order(uuid=order["uuid"])
 
             idx = 0

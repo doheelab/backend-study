@@ -26,7 +26,7 @@ ticker = "KRW-PCI"  # Paycoin
 
 
 tick = 5
-coin_num = 500
+coin_num = 5
 
 buy_list = []
 sell_list = []
