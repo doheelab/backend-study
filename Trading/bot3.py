@@ -22,8 +22,7 @@ f.close()
 
 upbit = pyupbit.Upbit(access, secret)
 ticker = "KRW-XRP"  # 리플
-ticker = "KRW-TFUEL"  # Paycoin
-
+ticker = "KRW-CRO"
 
 tick = 1
 coin_num = 100
@@ -168,13 +167,11 @@ def main(ticker):
                     bought = 1
                     saved_price = ask_price
                     saved_idx = idx
-                if bought == 1 and (
-                    idx - saved_idx > 20 or saved_price - ask_price > tick
-                ):
-                    sell_all(ticker)
-                    print(f"실패: {saved_price}에 사서 {ask_price} 이하에 팜")
-                    bought = 0
-        time.sleep(0.2)
+        if bought == 1 and (idx - saved_idx > 20 or saved_price - ask_price > tick):
+            sell_all(ticker)
+            print(f"실패: {saved_price}에 사서 {ask_price} 이하에 팜")
+            bought = 0
+        time.sleep(0.3)
 
         return (
             recent_ask_size,

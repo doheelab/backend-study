@@ -22,7 +22,7 @@ f.close()
 
 upbit = pyupbit.Upbit(access, secret)
 ticker = "KRW-XRP"  # 리플
-ticker = "KRW-IGNIS"  # Paycoin
+ticker = "KRW-BTT"  # Paycoin
 
 
 tick = 0.01
@@ -149,11 +149,11 @@ def main(ticker):
                     and check_ask_price(recent_ask_price)
                 )
                 buy_condition = (
-                    (ask_size_1 * 5 + ask_size_2 * 3 < bid_size_1)
+                    (ask_size_1 * 5 + 2 * ask_size_2 < bid_size_1)
                     # and bid_size_1 * 0.5 < bid_size_2
                     and buy_intensity
                 )
-                if ask_size_1 * 5 + ask_size_2 * 3 < bid_size_1:
+                if ask_size_1 * 5 + 2 * ask_size_2 < bid_size_1:
                     print(
                         ask_price,
                         bid_size_1 * 0.5 < bid_size_2,

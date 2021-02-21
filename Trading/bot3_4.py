@@ -22,7 +22,7 @@ f.close()
 
 upbit = pyupbit.Upbit(access, secret)
 ticker = "KRW-XRP"  # 리플
-ticker = "KRW-IGNIS"  # Paycoin
+ticker = "KRW-NPXS"  # Paycoin
 
 
 tick = 0.01
