@@ -34,6 +34,10 @@
 
 ## Machine Learning
 
+- [Ensemble Learning](https://github.com/doheelab/backend-study/blob/master/Machine%20Learning/Ensemble%20Learning.md)
+
+- [Logistic Regression](https://github.com/doheelab/backend-study/blob/master/Machine%20Learning/Logistic%20Regression.md)
+
 - Variational AutoEncoder
 
 ## Statistics
