@@ -26,7 +26,7 @@ ticker = "KRW-NPXS"  # Paycoin
 
 
 tick = 0.01
-coin_num = 100000
+coin_num = 50000
 
 buy_list = []
 sell_list = []
@@ -102,7 +102,6 @@ def main(ticker):
     recent_ask_size = []
     recent_ask_size_2 = []
     recent_ask_price = []
-    amount = coin_num
     saved_price = 0
     bought = 0
 
@@ -114,6 +113,7 @@ def main(ticker):
         recent_ask_price,
         bought,
         saved_price,
+        coin_num,
     ):
         # 호가정보
         orderbooks = pyupbit.get_orderbook(ticker)
@@ -135,9 +135,10 @@ def main(ticker):
             recent_ask_price = recent_ask_price[1:]
 
         orders = upbit.get_order(ticker)
-
+        amount = upbit.get_balance(ticker)
         if len(orders) == 0 and ask_price > 1:
             if bought == 1:
+
                 print("saved_price:", np.round(saved_price + tick, 2))
                 sell_coin(ticker, np.round(saved_price + tick, 2), amount)
                 bought = 0
@@ -163,7 +164,7 @@ def main(ticker):
                     )
 
                 if buy_condition:
-                    buy_coin(ticker, ask_price, amount)
+                    buy_coin(ticker, ask_price, coin_num)
                     bought = 1
                     saved_price = ask_price
                     saved_idx = idx
@@ -213,6 +214,7 @@ def main(ticker):
                 recent_ask_price,
                 bought,
                 saved_price,
+                coin_num,
             )
         except Exception as e:
             print(e)
