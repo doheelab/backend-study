@@ -11,7 +11,7 @@ $P(E)$: 사전 확률, $P(H|E)$: 사후 확률
 
 새로운 정보(E)를 토대로 어떤 사건(H)이 발생했다는 주장에 대한 신뢰도를 갱신해 나가는 방법이다.
 
-> 가능도 (Likelihood): 관찰을 통해 얻은 확률 분포
+> 가능도 (Likelihood): 관찰을 통해 얻은 모수의 확률 분포
  
 > Posterior = (Likelihood $\times$ Prior)/Evidence
 

@@ -52,6 +52,11 @@ $$
 
 이에 따라 gradient descent 방식으로 $y_i$들을 업데이트합니다. 
 
+## Crowding Problem
+
+Gaussian 대신에 Student t-Distribution 사용 (Tail이 더 큰 분포)
+
+가까운 점은 더 가깝게, 먼 점은 더 멀리 보낸다.
 
 # Reference
 
