@@ -1,36 +1,49 @@
+## git reset과 git revert 쉽게 이해하기
+
+이 글은 git add, git commit, git push 등의 개념에 대한 이해를 전제로 합니다.
+
+
+![gitfourarea](https://miro.medium.com/max/1000/1*Eced1qZ6rVz0npKAvJKJgw.png)
+
+
 # 01. Git의 4개의 영역
 
-- Git은 일반적으로 Working Directory, Repository, Index, Stash 의 4개의 영역으로 관리됩니다.
+Git은 일반적으로 `Working Directory`, `Repository`, `Index`, `Stash` 의 4개의 영역으로 구성되어 있습니다. 
+
+
+
 
 ## 1. Working Directory(작업영역)
 
-실제 프로젝트 디렉토리, git 이력과 관련된 정보가 저장되어있는 .git을 제외한 모든 영역
+프로젝트 디렉토리이며, 개발자가 직접 코드를 수정하는 공간을 의미합니다.
+
+`.git`을 제외한 모든 영역에 해당합니다.
 
 ## 2. Repository(저장소)
 
-파일이나 폴더를 변경 이력별로 저장해 두는 곳
+파일이나 폴더를 변경 이력별로 저장해두는 곳입니다.
 
-`.git` 디렉토리 내에 존재함
+`.git` 디렉토리 내에 존재합니다.
 
 Local, Remote Repository로 구분
 
 ## 3. Index (Staging Area)
 
-Working Directory 에서 Repository로 정보가 저장되기 전 준비 영역
+Working Directory 에서 Repository로 정보가 저장되기 전 준비 영역입니다.
 
-파일 상태를 기록, 스테이징 한다고도 표현함, Staging Area로 불리기도함
-
-`.git/index` 파일로 관리됨.
-
-`git add` 명령어로 Working Directory 에서 Index 영역으로 정보가 저장됨
-
-`git commit` 명령어로 Index 영역에서 Repository로 정보가 저장됨
+`.git/index` 파일로 관리됩니다.
 
 ## 4. Stash
 
-일반적인 `Working Directory > Index > Repository` 로 이루어지는 영역과는 다른 별개의 임시영역
+임시적으로 작업사항을 저장해두고, 나중에 꺼내올 수 있는 영역입니다.
 
-임시적으로 작업사항을 저장해놓고 나중에 꺼내올 수 있다.
+영역 | 역할 | 위치
+:---:|:---:|:---:
+`Working Directory` | 프로젝트 디렉토리이며, 개발자가 직접 코드를 수정하는 공간을 의미합니다. | `.`
+`Repository` | 파일이나 폴더를 변경 이력별로 저장해두는 곳입니다. | `.git`
+`Index (Staging Area)` | Working Directory 에서 Repository로 정보가 저장되기 전 준비 영역입니다. | `.git/index`
+`Stash` | 임시적으로 작업사항을 저장해두고, 나중에 꺼내올 수 있는 영역입니다. |  `.git/refs/stash`
+
 
 <br/>
 <br/>
@@ -99,6 +112,7 @@ Working Directory 에서 Repository로 정보가 저장되기 전 준비 영역
 $ git reset 커밋ID
 ```
 
+
 ### 2.2 git reset --hard
 
 해당 커밋ID의 상태로 Working Directory와 Index영역 모두 초기화된다.
@@ -114,8 +128,33 @@ $ git reset 커밋ID
 
 ## 05. git stash
 
+### 1. git stash
+
 `stash` (안전한 곳에) 숨겨두다.
 
+작업 도중 커밋을 할 수는 없는 상태지만, 브랜치 전환을 하거나 커밋 변경을 해야할때 임시적으로 저장할 수 있는 명령어
+
+`commit`되기 이전 작업 중 파일과 `git add`로 추가된 파일 까지 모두 `stash` 영역으로 저장되며 수정분량은 제거 된다.
+
+단 `git add` 명령어로 한번이라도 `index` 영역에 트래킹 된 파일만 `stash`영역으로 저장됨
+
+새롭게 생성한 파일은 `git add` 후 `git stash` 명령어를 사용하거나 `git stash -u` 옵션을 같이 사용할 것
+
+### 2. git stash 기본적인 사용법
+
+- git stash
+
+- git stash save 명칭
+
+- git stash list
+
+- git stash apply
+
+- git stash apply stash아이디
+
+- git stash drop
+
+- git stash pop
 
 ## 사용자 이름, 이메일 확인
 
@@ -149,3 +188,4 @@ git remote set-url origin https://doheelab@github.com/doheelab/optimization.git
 
 [GIT] 비공개 repository와 터미널로 clone하기 https://mparchive.tistory.com/153
 
+[Demystifying Git: Stash, Basic workflow in the four areas] https://medium.com/technoider/demystifying-git-stash-basic-workflow-in-the-four-areas-f2192b5e509c
