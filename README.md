@@ -66,9 +66,9 @@
 
 ## Git
 
-- [github](https://github.com/doheelab/backend-study/tree/master/Git)
+- [git reset](https://github.com/doheelab/backend-study/tree/master/Git/2021-03-16-gitReset.md)
 
-- git stash
+- [git stash](https://github.com/doheelab/backend-study/tree/master/Git/2021-03-17-gitStash.md)
 
 ## ETC
 
