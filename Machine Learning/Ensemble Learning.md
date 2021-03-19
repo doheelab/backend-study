@@ -37,7 +37,7 @@ $$
 
 given that **zero mean** and are **uncorrelated**.
 
-In reality (errors are correlated), by the Cauchy's ionequallity,
+In reality (errors are correlated), by the Cauchy's inequallity,
 
 $$
 \left[\frac{1}{M}{\sum_{m=1}^{M}{\epsilon_m(x)}}\right]^2 \le \frac{1}{M}{\sum_{m=1}^{M}{\epsilon_m(x)^2}},

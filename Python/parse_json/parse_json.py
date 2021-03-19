@@ -23,7 +23,19 @@ logger.addHandler(ch)
 def parse(path: str):
     g = gzip.open(path, "rb")
     for l in g:
+        # string 형식의 dictionary를 python 오브젝트로 변환
+        print(l, eval(l))
+        break
         yield eval(l)
+
+
+path = "../../save/meta_Electronics.json.gz"
+
+df_dict = {0: {"a": 1, "b": 2}, 1: {"a": 3, "b": 4}}
+
+
+pd.DataFrame.from_dict(df_dict)
+pd.DataFrame.from_dict(df_dict, orient="index")
 
 
 def parse_json_to_df(path: str) -> pd.DataFrame:
@@ -34,7 +46,11 @@ def parse_json_to_df(path: str) -> pd.DataFrame:
         i += 1
         if i % 100000 == 0:
             logger.info("Rows processed: {:,}".format(i))
+        if i == 10000:
+            break
 
+    # dictionary를 dataframe으로 변환
+    # orient="index": 딕셔너리의 키를 행의 레이블로 설정
     df = pd.DataFrame.from_dict(df_dict, orient="index")
 
     # Lowercase
