@@ -14,4 +14,4 @@
 
 - git clone https://사용자의NAME:비밀번호@github.com/저장소를판유저이름/저장소이름
 
-# Reference
+- (working example) git clone https://Dohee-Jung@github.com/NuviLabs/web_admin_total_front.git
