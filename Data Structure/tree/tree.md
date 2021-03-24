@@ -127,7 +127,6 @@ def iterativeInOrder(node):
       crnt_node = stack.pop()
       print(crnt_node.val, end=' ')
       crnt_node = crnt_node.right
-
     else:
       break;
 

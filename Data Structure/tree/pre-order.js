@@ -2,8 +2,8 @@
 class Tree {
   constructor(val) {
     this.val = val;
-    this.left = null;
-    this.right = null;
+    this.leftNode = null;
+    this.rightNode = null;
   }
 
   setVal(val) {
@@ -11,11 +11,21 @@ class Tree {
   }
 
   setLeft(node) {
-    this.left = node;
+    this.leftNode = node;
   }
 
   setRight(node) {
-    this.right = node;
+    this.rightNode = node;
+  }
+
+  // in-order
+  inOrderTree(node) {
+    if (!node) {
+      return;
+    }
+    this.inOrderTree(node.leftNode);
+    console.log(node.val);
+    this.inOrderTree(node.rightNode);
   }
 
   // pre-order
@@ -27,6 +37,17 @@ class Tree {
     console.log(node.val);
     this.preOrderTree(node.leftNode);
     this.preOrderTree(node.rightNode);
+  }
+
+  // post-order
+  postOrderTree(node) {
+    if (!node) {
+      return;
+    }
+
+    this.postOrderTree(node.leftNode);
+    this.postOrderTree(node.rightNode);
+    console.log(node.val);
   }
 }
 
@@ -40,69 +61,18 @@ let node6 = new Tree(6);
 let node7 = new Tree(7);
 root.setLeft(node2);
 root.setRight(node3);
-root.left.setLeft(node4);
-root.left.setRight(node5);
-root.right.setLeft(node6);
-root.right.setRight(node7);
+root.leftNode.setLeft(node4);
+root.leftNode.setRight(node5);
+root.rightNode.setLeft(node6);
+root.rightNode.setRight(node7);
 
-var preOrderTraversal = function (node) {
-  if (node == null) {
-    return [];
-  }
-  let stack = [];
-  stack.push(node);
-  while (stack.length > 0) {
-    let pop_node = stack.pop();
-    console.log(pop_node.val);
-    if (pop_node.right) stack.push(pop_node.right);
-    if (pop_node.left) stack.push(pop_node.left);
-  }
-};
+// 출력하기
+console.log('>>>> InOrder Start!! ');
+root.inOrderTree(root);
 
-var InOrderTraversal = function (node) {
-  if (node == null) {
-    return [];
-  }
-  let crnt_node = node;
-  let stack = [];
-  while (true) {
-    if (crnt_node != null) {
-      stack.push(crnt_node);
-      crnt_node = crnt_node.left;
-    } else if (stack.length > 0) {
-      crnt_node = stack.pop();
-      console.log(crnt_node.val);
-      crnt_node = crnt_node.right;
-    } else {
-      break;
-    }
-  }
-};
+console.log('>>>> preOrder Start!! ');
+root.preOrderTree(root);
 
-var PostOrderTraversal = function (node) {
-  let crnt_node = node;
-  let stack = [];
-  let last_visit_node = null;
-  while (true) {
-    if (crnt_node != null) {
-      stack.push(crnt_node);
-      crnt_node = crnt_node.left;
-    } else if (stack.length > 0) {
-      peek_node = stack[-1];
-      if (peek_node.right && last_visit_node != peek_node.right) {
-        crnt_node = peek_node.right;
-      } else {
-        console.log(peek_node.val);
-        last_visit_node = stack.pop();
-      }
-    } else {
-      break;
-    }
-  }
-};
+console.log('>>>> postOrder Start!! ');
+root.postOrderTree(root);
 
-PreOrderTraversal(root);
-console.log("---------");
-InOrderTraversal(root);
-console.log("---------");
-PostOrderTraversal(root);

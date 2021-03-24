@@ -92,7 +92,6 @@ def iterativePostorder(node):
             else:
                 print(peek_node.val, end=" ")
                 last_visit_node = stack.pop()
-
         else:
             break
 
