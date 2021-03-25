@@ -34,6 +34,8 @@ def iterativePreorder(node):
             stack.append(pop_node.left)
 
 def iterativeInorder(node):
+    if node is None:
+        return
     crnt_node = node
     stack = []
     while True:
@@ -50,6 +52,8 @@ def iterativeInorder(node):
             break
 
 def iterativePostorder(node):
+    if node is None:
+        return
     stack = []
     last_visit_node = None
     crnt_node = node

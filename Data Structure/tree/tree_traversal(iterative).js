@@ -34,7 +34,10 @@ root.left.setRight(node5);
 root.right.setLeft(node6);
 root.right.setRight(node7);
 
-var PreOrderTraversal = function (node) {
+var iterativePreOrder = function (node) {
+  if (node == null) {
+    return;
+  }
   let stack = [];
   stack.push(node);
   while (stack.length > 0) {
@@ -45,7 +48,10 @@ var PreOrderTraversal = function (node) {
   }
 };
 
-var InOrderTraversal = function (node) {
+var iterativeInOrder = function (node) {
+  if (node == null) {
+    return;
+  }
   let crnt_node = node;
   let stack = [];
   while (true) {
@@ -62,7 +68,10 @@ var InOrderTraversal = function (node) {
   }
 };
 
-var PostOrderTraversal = function (node) {
+var iterativePostOrder = function (node) {
+  if (node == null) {
+    return;
+  }
   let crnt_node = node;
   let stack = [];
   let last_visit_node = null;
@@ -84,8 +93,8 @@ var PostOrderTraversal = function (node) {
   }
 };
 
-PreOrderTraversal(root);
+iterativePreOrder(root);
 console.log("---------");
-InOrderTraversal(root);
+iterativeInOrder(root);
 console.log("---------");
-PostOrderTraversal(root);
+iterativePostOrder(root);
