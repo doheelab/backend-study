@@ -34,7 +34,7 @@ root.left.setRight(node5);
 root.right.setLeft(node6);
 root.right.setRight(node7);
 
-var LevelOrderTraversal = function (node) {
+var levelOrderTraversal = function (node) {
   let queue = [];
   queue.push(node);
   while (queue.length > 0) {
@@ -45,4 +45,4 @@ var LevelOrderTraversal = function (node) {
   }
 };
 
-LevelOrderTraversal(root);
+levelOrderTraversal(root);
