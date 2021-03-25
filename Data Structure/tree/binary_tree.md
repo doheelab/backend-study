@@ -2,14 +2,14 @@
 
 이번 글에서는 `이진 트리(Binary Tree)`와 `트리 순회(Tree Traversal)`에 대해서 알아보고, `JavaScript`를 이용해서 구현해보겠습니다.
 
-## `그래프(Graph)`
+## 그래프(Graph)
 
 - `노드(node)`들과 노드들을 연결하는 `간선(edge)`들로 구성되어 있습니다.
 - 그래프는 `root node`가 하나 있고, 각 노드에 `child node`가 연결되어 있습니다.
 
-## `트리(Tree)`
+## 트리(Tree)
 
-- 그래프의 일종으로, `cycle`이 없고, 서로 다른 두 노드를 잇는 길이 하나 뿐인 그래프를 `트리`라고 합니다.
+- `트리`는 그래프의 일종으로, `cycle`이 없고, 서로 다른 두 노드를 잇는 길이 하나 뿐인 그래프를 `트리`라고 합니다.
 - 노드가 `N개`인 트리는 항상 `N-1개`의 간선을 가집니다.
 - `child`의 갯수가 2개로 제한되면 `Binary Tree`라고 합니다.
 
@@ -19,15 +19,16 @@
 - `Complete Binary Tree`: 왼쪽 위에서부터 가득 차 있는 트리
 - `Perfect Binary Tree`: 모든 내부 노드가 2개의 `children`을 가지고 있으며, `leaf node`의 `level`이 같은 트리
 
-## `이진 트리 순회 알고리즘(Binary Tree Traversal)` 
+## 이진 트리 순회 알고리즘(Binary Tree Traversal)
 
-이진 트리 순회 알고리즘은 트리에 저장된 모든 값을 중복이나 빠짐없이 살펴보고 싶을 때 사용합니다. 이진 트리의 순회 방법 중 `깊이 우선 순회 방법(Depth First Traversal)`으로는 `전위 순회(Pre-order traversal)`, `정위 순회(In-order traversal)`, `후위 순회(Post-order traversal)`가 있으며, `너비 우선 순회 방법(Breadth First Traversal)`으로는 `레벨 순회`가 있습니다.
+`이진 트리 순회 알고리즘`은 트리에 저장된 모든 값을 중복이나 빠짐없이 살펴보고 싶을 때 사용합니다. 이진 트리의 순회 방법 중 `깊이 우선 순회 방법(Depth First Traversal)`으로는 `전위 순회(Pre-order traversal)`, `정위 순회(In-order traversal)`, `후위 순회(Post-order traversal)`가 있으며, `너비 우선 순회 방법(Breadth First Traversal)`으로는 `레벨 순회`가 있습니다.
 
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/71360682/112273731-05464480-8cc1-11eb-9316-831b34246be2.png" /></div>
 
 <div align="center">
   <i>Binary Tree 1 (from 코드없는프로그래밍)</i>
 </div>
+<br/>
 
 - `Pre-order`: **N**LR
 - `In-order`: L**N**R
@@ -39,6 +40,7 @@
 <div align="center">
   <i>Binary Tree 2 (from 코드없는프로그래밍)</i>
 </div>
+<br/>
 
 - `Pre-order`: 1 2 4 5 3 6 7
 - `In-order`: 4 2 5 1 6 3 7
@@ -46,8 +48,6 @@
 - `Level-order`: 1 2 3 4 5 6 7
 
 ## 이진 트리 순회 알고리즘의 구현
-
-> 깊이 우선 순회 방법(BFS)
 
 ## 재귀적(Recursive) 방법
 
@@ -125,6 +125,7 @@ var recursivePostOrder = function (node) {
 <div align="center">
   <i>Pre-order traversal from http://ejklike.github.io/</i>
 </div>
+<br/>
 
 ```javascript
 var iterativePreOrder = function (node) {
@@ -143,7 +144,7 @@ var iterativePreOrder = function (node) {
 ```
 
 <div align="center">
-  <i>Pre-order traversal traversal</i>
+  <i>Pre-order traversal traversal from http://ejklike.github.io/</i>
 </div>
 <br/>
 
@@ -153,6 +154,7 @@ var iterativePreOrder = function (node) {
 <div align="center">
   <i>In-order traversal from http://ejklike.github.io/</i>
 </div>
+<br/>
 
 ```javascript
 var iterativeInOrder = function (node) {
@@ -221,7 +223,7 @@ var iterativePostOrder = function (node) {
 <br/>
 
 
-> 너비 우선 순회 방법(BFS)
+## 너비 우선 순회 방법(BFS)
 
 이진 트리의 너비 우선 순회에는 `레벨 순회`가 있습니다. `큐(queue)` 자료구조를 사용하면 간단히 구현할 수 있습니다.
 
@@ -243,7 +245,7 @@ var levelOrderTraversal = function (node) {
 levelOrderTraversal(root)
 ```
 
-## Path Sum II [(from LeetCode)](https://leetcode.com/problems/path-sum-ii/description/)
+## 문제풀이 1. Path Sum II [(LeetCode)](https://leetcode.com/problems/path-sum-ii/description/)
 
 Given the `root` of a binary tree and an integer `targetSum`, return all **root-to-leaf** paths where each path's sum equals `targetSum`.
 
@@ -251,42 +253,25 @@ Given the `root` of a binary tree and an integer `targetSum`, return all **root-
 
 ### Solution
 
-```javascript
-var pathSum = function(root, sum) {
-  var res = [];
-  helper(root, sum, [], res);
-  return res;
-};
-
-var helper = function (root, sum, now, res) {
-  if (!root) return;
-
-  now.push(root.val);
-
-  if (root.val === sum && !root.left && !root.right) res.push(now);
-
-  helper(root.left, sum - root.val, Array.from(now), res);
-  helper(root.right, sum - root.val, Array.from(now), res);
-};
-```
 
 ```javascript
-var pathSum = function(root, sum) {
-  let res = [];
-  helper(root, sum, [], res);
-  
-  return res;
-};
+var pathSum = function (root, targetSum) {
+  if (root == null) {
+    return [];
+  }
+  let result = [];
 
-var helper = function (root, sum, now, res) {
-  if (!root) return;
-
-  now.push(root.val);
-
-  if (root.val === sum && !root.left && !root.right) res.push(now);
-
-  helper(root.left, sum - root.val, Array.from(now), res);
-  helper(root.right, sum - root.val, Array.from(now), res);
+  var repeat = function (node, path, residual) {
+    if (!node) return;
+    path.push(node.val);
+    residual -= node.val;
+    if (residual == 0 && !node.left && !node.right) result.push(Array.from(path));
+    repeat(node.left, path, residual);
+    repeat(node.right, path, residual);
+    path.pop();
+  };
+  repeat(root, [], targetSum);
+  return result;
 };
 ```
 

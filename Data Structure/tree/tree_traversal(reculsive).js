@@ -34,15 +34,6 @@ root.leftNode.setRight(node5);
 root.rightNode.setLeft(node6);
 root.rightNode.setRight(node7);
 
-// in-order
-var recursiveInOrder = function (node) {
-  if (!node) {
-    return;
-  }
-  this.recursiveInOrder(node.leftNode);
-  console.log(node.val);
-  this.recursiveInOrder(node.rightNode);
-};
 
 // pre-order
 var recursivePreOrder = function (node) {
@@ -52,6 +43,17 @@ var recursivePreOrder = function (node) {
   console.log(node.val);
   this.recursivePreOrder(node.leftNode);
   this.recursivePreOrder(node.rightNode);
+};
+
+
+// in-order
+var recursiveInOrder = function (node) {
+  if (!node) {
+    return;
+  }
+  this.recursiveInOrder(node.leftNode);
+  console.log(node.val);
+  this.recursiveInOrder(node.rightNode);
 };
 
 // post-order

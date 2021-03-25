@@ -23,9 +23,8 @@ node3.right = node7
 def iterativePreorder(node):
     if node is None:
         return
-    stack = []
-    stack.append(node)
-    while 0 < len(stack):
+    stack = [node]
+    while len(stack)>0:
         pop_node = stack.pop()
         print(pop_node.val, end=" ")
         if pop_node.right:
