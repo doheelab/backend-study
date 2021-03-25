@@ -69,11 +69,11 @@ var PostOrderTraversal = function (node) {
   while (true) {
     if (crnt_node != null) {
       stack.push(crnt_node);
-      crnt_node = crnt_node.right;
+      crnt_node = crnt_node.left;
     } else if (stack.length > 0) {
       peek_node = stack[stack.length - 1];
-      if (peek_node.left != null && last_visit_node != peek_node.left) {
-        crnt_node = peek_node.left;
+      if (peek_node.right != null && last_visit_node != peek_node.right) {
+        crnt_node = peek_node.right;
       } else {
         console.log(peek_node.val);
         last_visit_node = stack.pop();
@@ -83,6 +83,7 @@ var PostOrderTraversal = function (node) {
     }
   }
 };
+
 PreOrderTraversal(root);
 console.log("---------");
 InOrderTraversal(root);

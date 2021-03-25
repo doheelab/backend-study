@@ -20,15 +20,6 @@ node2.right = node5
 node3.left = node6
 node3.right = node7
 
-
-def recursivePreorder(node):
-    if node is None:
-        return
-    print(node.val, end=" ")
-    recursivePreorder(node.left)
-    recursivePreorder(node.right)
-
-
 def iterativePreorder(node):
     if node is None:
         return
@@ -41,15 +32,6 @@ def iterativePreorder(node):
             stack.append(pop_node.right)
         if pop_node.left:
             stack.append(pop_node.left)
-
-
-def recursiveInorder(node):
-    if node is None:
-        return
-    recursiveInorder(node.left)
-    print(node.val, end=" ")
-    recursiveInorder(node.right)
-
 
 def iterativeInorder(node):
     crnt_node = node
@@ -66,15 +48,6 @@ def iterativeInorder(node):
 
         else:
             break
-
-
-def recursivePostorder(node):
-    if node is None:
-        return
-    recursivePostorder(node.left)
-    recursivePostorder(node.right)
-    print(node.val, end=" ")
-
 
 def iterativePostorder(node):
     stack = []
@@ -96,14 +69,8 @@ def iterativePostorder(node):
             break
 
 
-recursivePreorder(node1)
-print(" ")
 iterativePreorder(node1)
 print(" ")
-recursiveInorder(node1)
-print(" ")
 iterativeInorder(node1)
-print(" ")
-recursivePostorder(node1)
 print(" ")
 iterativePostorder(node1)

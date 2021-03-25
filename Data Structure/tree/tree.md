@@ -4,33 +4,24 @@
 
 ## `그래프(Graph)`
 
-- `node`와 node 사이를 잇는 `path`로 구성된 자료구조
-- 그래프는 `root node`가 하나 있고, 각 `node`에 `child node`가 연결되어 있습니다.
+- `노드(node)`들과 노드들을 연결하는 `간선(edge)`들로 구성되어 있습니다.
+- 그래프는 `root node`가 하나 있고, 각 노드에 `child node`가 연결되어 있습니다.
 
 ## `트리(Tree)`
 
-- 그래프의 일종으로, `cycle`이 없고, 서로 다른 두 `node`를 잇는 길이 하나 뿐인 그래프를 트리라고 합니다.
-- `child`의 갯수가 2개로 제한되면 `binary tree`라고 합니다.
+- 그래프의 일종으로, `cycle`이 없고, 서로 다른 두 노드를 잇는 길이 하나 뿐인 그래프를 `트리`라고 합니다.
+- 노드가 `N개`인 트리는 항상 `N-1개`의 간선을 가집니다.
+- `child`의 갯수가 2개로 제한되면 `Binary Tree`라고 합니다.
 
-## `Binary Tree`의 종류
+## 이진 트리의 종류
 
-- `full binary tree`: 각각의 `node`가 `child`가 0개 혹은 2개
-- `complete binary tree`: 왼쪽 위에서부터 가득 차 있는 트리
-- `perfect binary tree`: 모든 내부 `node`가 2개의 `children`을 가지고 있으며, `leaf node`의 `level`이 같은 트리
+- `Full Binary Tree`: 각각의 노드가 `child`가 0개 혹은 2개
+- `Complete Binary Tree`: 왼쪽 위에서부터 가득 차 있는 트리
+- `Perfect Binary Tree`: 모든 내부 노드가 2개의 `children`을 가지고 있으며, `leaf node`의 `level`이 같은 트리
 
-## `Binary Tree Traversal`
+## `이진 트리 순회 알고리즘(Binary Tree Traversal)` 
 
-<!-- <div style="text-align:center"><img src="https://cdn-images-1.medium.com/max/350/0*YzOEfnGnWTPbsUkv" /></div> -->
-
-<!-- <div align="center">
-  <i>Types of Binary Tree Traversal</i>
-</div>
-
-<br/> -->
-
-### 3가지 타입
-
-트리의 node들을 어떤 순서로 방문하느냐에 따라 `in-order`, `pre-order`, `post-order traversal`로 구분합니다.
+이진 트리 순회 알고리즘은 트리에 저장된 모든 값을 중복이나 빠짐없이 살펴보고 싶을 때 사용합니다. 이진 트리의 순회 방법 중 `깊이 우선 순회 방법(Depth First Traversal)`으로는 `전위 순회(Pre-order traversal)`, `정위 순회(In-order traversal)`, `후위 순회(Post-order traversal)`가 있으며, `너비 우선 순회 방법(Breadth First Traversal)`으로는 `레벨 순회`가 있습니다.
 
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/71360682/112273731-05464480-8cc1-11eb-9316-831b34246be2.png" /></div>
 
@@ -38,9 +29,10 @@
   <i>Binary Tree 1 (from 코드없는프로그래밍)</i>
 </div>
 
-- `pre-order`: **N**LR
-- `in-order`: L**N**R
-- `post-order`: LR**N**
+- `Pre-order`: **N**LR
+- `In-order`: L**N**R
+- `Post-order`: LR**N**
+- `Level-order`: **N**LR
 
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/71360682/112273743-0a0af880-8cc1-11eb-9953-1bf855e4dd17.png" /></div>
 
@@ -48,50 +40,73 @@
   <i>Binary Tree 2 (from 코드없는프로그래밍)</i>
 </div>
 
-- `pre-order`: 1 2 4 5 3 6 7
-- `in-order`: 4 2 5 1 6 3 7
-- `post-order`: 4 5 2 6 7 3 1
+- `Pre-order`: 1 2 4 5 3 6 7
+- `In-order`: 4 2 5 1 6 3 7
+- `Post-order`: 4 5 2 6 7 3 1
+- `Level-order`: 1 2 3 4 5 6 7
 
-### 2가지 구현 방법
+## 이진 트리 순회 알고리즘의 구현
 
-`tree traversal`은 `recursive` 혹은 `iterative` 하게 구현할 수 있습니다.
+이진 트리 순회 방법 중 `깊이 우선 순회 방법(BFS)`은 `재귀적(Recursive)` 혹은 `반복적(Iterative)` 방법으로 구현할 수 있습니다. 먼저 재귀적인 방법으로 구현해보겠습니다.
 
-## Implementation in Python
+## 재귀적(Recursive) 방법
+
+### 트리 정의하기
 
 ```python
-# 트리 정의하기
 class TreeNode:
   def __init__(self, val=0):
     self.val = val
     self.left = None
     self.right = None
+```
 
-node1 = TreeNode(1)
-node2 = TreeNode(2)
-node3 = TreeNode(3)
-node4 = TreeNode(4)
-node5 = TreeNode(5)
-node6 = TreeNode(6)
-node7 = TreeNode(7)
+### 전위 순회(Pre-order)
 
-# 부모, 자식 관계 만들기
-node1.left = node2
-node1.right = node3
-node2.left = node4
-node2.right = node5
-node3.left = node6
-node3.right = node7
-
+```python
 def recursivePreOrder(node):
   if node is None:
     return
   print(node.val, end=' ')
   recursivePreOrder(node.left)
   recursivePreOrder(node.right)
+```
 
-def iterativePreOrder(node):
+### 정위 순회(In-order)
+
+```python
+def recursiveInOrder(node):
   if node is None:
     return
+  recursiveInOrder(node.left)
+  print(node.val, end=' ')
+  recursiveInOrder(node.right)
+```
+
+### 후위 순회(Post-order)
+
+```python
+def recursivePostOrder(node):
+  if node is None:
+    return
+  recursivePostOrder(node.left)
+  recursivePostOrder(node.right)
+  print(node.val, end=' ')
+```
+
+## 반복적(Iterative) 방법
+
+반복적인 방법으로 구현하는 것은 더욱 복잡합니다. 먼저 그림을 통해 살펴보겠습니다.
+
+<div style="text-align:center"><img src="http://108.61.119.12/wp-content/uploads/2014/10/binary-tree-1-pre-order-small.gif" /></div>
+<div style="text-align:center"><img src="http://108.61.119.12/wp-content/uploads/2014/10/binary-tree-1-order-small.gif" /></div>
+<div style="text-align:center"><img src="http://108.61.119.12/wp-content/uploads/2014/10/binary-tree-1-post-order-small.gif" /></div>
+
+<img src="http://108.61.119.12/wp-content/uploads/2014/10/binary-tree-1-pre-order-small.gif" alt="" title="http://108.61.119.12/wp-content/uploads/2014/10/binary-tree-1-pre-order-small.gif" width="330px" />
+
+
+```python
+def iterativePreOrder(node):
   stack = []
   stack.append(node)
   while 0<len(stack):
@@ -101,19 +116,6 @@ def iterativePreOrder(node):
       stack.append(pop_node.right)
     if pop_node.left:
       stack.append(pop_node.left)
-
-recursivePreOrder(node1)
-print(' ')
-iterativePreOrder(node1)
-```
-
-```python
-def recursiveInOrder(node):
-  if node is None:
-    return
-  recursiveInOrder(node.left)
-  print(node.val, end=' ')
-  recursiveInOrder(node.right)
 
 def iterativeInOrder(node):
   crnt_node = node
@@ -129,19 +131,6 @@ def iterativeInOrder(node):
       crnt_node = crnt_node.right
     else:
       break;
-
-recursiveInOrder(node1)
-print(' ')
-iterativeInOrder(node1)
-```
-
-```python
-def recursivePostOrder(node):
-  if node is None:
-    return
-  recursivePostOrder(node.left)
-  recursivePostOrder(node.right)
-  print(node.val, end=' ')
 
 def iterativePostOrder(node):
   stack = []
@@ -159,15 +148,10 @@ def iterativePostOrder(node):
       else:
         print(peek_node.val, end=' ')
         last_visit_node = stack.pop()
-
     else:
       break
-
-
-recursivePostOrder(node1)
-print(' ')
-iterativePostOrder(node1)
 ```
+
 
 ## 관련문항 (LeetCode)
 
@@ -180,6 +164,8 @@ iterativePostOrder(node1)
 [2] [[자료구조] Javascript로 Tree와 Tree 순회 구현하기](https://gogomalibu.tistory.com/55)
 
 [3] [코딩테스트, 기초, 트리, Tree 소개](https://www.youtube.com/watch?v=bOZhvOc5xlQ&list=PLDV-cCQnUlIaTA41swrZwgH4mX7iPxLH4&index=1)
+
+[4] [파이썬을 사용한 이진 트리와 순회 알고리즘 구현 (2)](http://ejklike.github.io/2018/01/09/traversing-a-binary-tree-2.html)
 
 ## 다음주제
 
