@@ -9,9 +9,9 @@
 
 ## 트리(Tree)
 
-- `트리`는 그래프의 일종으로, `cycle`이 없고, 서로 다른 두 노드를 잇는 길이 하나 뿐인 그래프를 `트리`라고 합니다.
+- `트리`는 그래프의 일종으로, `cycle`이 없고, **서로 다른 두 노드를 잇는 길이 하나 뿐인 그래프**를 트리라고 합니다.
 - 노드가 `N개`인 트리는 항상 `N-1개`의 간선을 가집니다.
-- `child`의 갯수가 2개로 제한되면 **Binary Tree**라고 합니다.
+- `child`의 갯수가 2개로 제한되면 **이진 트리(Binary Tree)**라고 합니다.
 
 ## 이진 트리의 종류
 
@@ -21,7 +21,7 @@
 
 ## 이진 트리 순회 알고리즘(Binary Tree Traversal)
 
-**이진 트리 순회 알고리즘**은 트리에 저장된 모든 값을 중복이나 빠짐없이 살펴보고 싶을 때 사용합니다. 이진 트리의 순회 방법 중 `깊이 우선 순회 방법(Depth First Traversal)`으로는 `전위 순회(Pre-order traversal)`, `정위 순회(In-order traversal)`, `후위 순회(Post-order traversal)`가 있으며, `너비 우선 순회 방법(Breadth First Traversal)`으로는 `레벨 순회`가 있습니다.
+**이진 트리 순회 알고리즘**은 트리에 저장된 모든 값을 중복이나 빠짐없이 살펴보고 싶을 때 사용합니다. 이진 트리의 순회 방법 중 **깊이 우선 순회 방법(Depth First Traversal)**으로는 `전위 순회(Pre-order traversal)`, `정위 순회(In-order traversal)`, `후위 순회(Post-order traversal)`가 있으며, **너비 우선 순회 방법(Breadth First Traversal)**으로는 `레벨 순회`가 있습니다.
 
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/71360682/112273731-05464480-8cc1-11eb-9316-831b34246be2.png" /></div>
 
@@ -225,7 +225,7 @@ var iterativePostOrder = function (node) {
 
 ## 너비 우선 순회 방법(BFS)
 
-이진 트리의 너비 우선 순회에는 **레벨 순회**가 있습니다. **큐(queue)** 자료구조를 사용하면 간단히 구현할 수 있습니다.
+이진 트리의 `너비 우선 순회`에는 **레벨 순회**가 있습니다. **큐(queue)** 자료구조를 사용하면 간단히 구현할 수 있습니다.
 
 ```javascript
 var levelOrderTraversal = function (node) {
