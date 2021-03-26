@@ -1,3 +1,10 @@
+---
+title: "케라스(Keras)로 Stacked LSTM 구현하기"
+date: 2020-04-30 09:00:00 -0400
+categories: machine-learning
+---
+
+
 # [자료구조] 이진 트리(Binary Tree)와 트리 순회(Tree Traversal)
 
 이번 글에서는 **이진 트리(Binary Tree)**와 **트리 순회(Tree Traversal)**에 대해서 알아보고, `JavaScript`를 이용해서 구현해보겠습니다.
@@ -278,6 +285,8 @@ var pathSum = function (root, targetSum) {
 
 
 ## 관련문항 (LeetCode)
+
+[Path Sum II](https://leetcode.com/problems/path-sum-ii/description/)
 
 [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 
