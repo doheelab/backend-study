@@ -173,6 +173,19 @@ INT, DOUBLE 등의 경우, UN을 사용해 주면 -값 +값 이던 범위가 값
 
 ---
 
+## 테이블 생성
+
+```
+CREATE TABLE `student_tb` (
+    `sno` int(11) NOT NULL AUTO_INCREMENT,
+    `name` char(10) DEFAULT NULL,
+    `det` char(20) DEFAULT NULL,
+    `addr` char(80) DEFAULT NULL,
+    `tel` char(20) DEFAULT NULL,
+    PRIMARY KEY (`sno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
 ## 기본키(PRIMARY KEY)
 
 - 테이블 생성시
