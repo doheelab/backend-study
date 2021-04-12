@@ -7,7 +7,7 @@
 >$\max_{\theta}p(X|\theta) = \sum_{Z}p(X,Z|\theta)$.
 
 - 관측할 수 있는 parameter $\theta$
-- latent variabel $Z$
+- latent variable $Z$
 
 만일 latent variable $Z$의 marginal distribution을 $q(Z)$라고 정의하면, 앞에서 설명한 문제의 log-likelihood는 다음과 같다.
 
@@ -28,6 +28,20 @@ KL diovergence는 항상 0보다 크거나 같기 때문에, $L(q,\theta)$가 lo
 따라서 $L(q,\theta)$를 최대가 되도록 하는 $\theta$와 $q(Z)$ 찾는 문제로 변환된다.
 
 이 때 $\theta$와 $q(Z)$를 번갈아가면서 update하는 알고리즘이 EM 알고리즘이다.
+
+1. 모수 $\theta$를 임의의 값으로 설정한다.
+   
+2. 주어진 모수 값에 관한 잠재변수 $Z$값을 추정한다.
+
+3. 2단계에서 얻은 잠재변수 값을 이용해 모수 $\theta$값을 다시 추정한다.
+
+4. 모수 $\theta$ 값과 잠재변수 $Z$값이 수렴할 때까지 2, 3단계를 반복한다.
+
+## Reference
+
+https://ko.wikipedia.org/wiki/%EA%B8%B0%EB%8C%93%EA%B0%92_%EC%B5%9C%EB%8C%80%ED%99%94_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
+
+---
 
 ## MLE vs MAP
 

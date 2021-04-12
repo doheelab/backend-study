@@ -18,7 +18,7 @@ solution is only defined pointwise, so reconstruction at arbitrary locations is 
 
 boundary conditions tend to be complicated to implement
 
-### FEM
+### FEM (from Wiki)
 
 1. Convert the original BVP into its weak form.
 
@@ -30,7 +30,7 @@ boundary conditions tend to be complicated to implement
 
 ## 행렬부호함수 (JCF)
 
-복수수에서의 부호함수를 일반화한 함수
+복소수에서의 부호함수를 행렬로 일반화한 함수
 
 ### 조르당 표준형
 
