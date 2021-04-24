@@ -21,3 +21,25 @@
 - git rm => 원격 저장소와 로컬 저장소에 있는 파일을 삭제한다.
 
 - git rm --cached => 원격 저장소에 있는 파일을 삭제한다. 로컬 저장소에 있는 파일은 삭제하지 않는다.
+
+## Git - remote: Repository not found 해결방법
+
+verify git configuration:
+
+```
+git config --list
+```
+
+should be like:
+
+```
+...
+remote.origin.url=https://github.com/ORG/repo-name.git
+...
+```
+
+update remote.origin.url with ssh to be used:
+
+```
+git remote set-url origin git@github.com:ORG/repo-name.git
+```
