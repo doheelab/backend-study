@@ -38,10 +38,11 @@ $$
 
 Z = \frac{\bar{X} - \mu}{ \sigma / \sqrt{n}}, \\ \\
 
-t = \frac{\bar{X}-\mu}{s/\sqrt{}n}
+t = \frac{\bar{X}-\mu}{s/\sqrt{n}}
 
 $$
 
+has the $t$ distribution with $n-1$ degrees of freedom.
 
 - 두 표본 간의 유의미한 통계적 차이가 있는지 확인
 
