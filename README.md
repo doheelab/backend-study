@@ -21,11 +21,7 @@
 - prod2vec
 
 - FastText
-
-- Blog Post
-
-  - Building a Strong Baseline Recommender in PyTorch, on a Laptop
-
+  
 - Paper Review
 
   - [Word2vec applied to Recommendation: Hyperparameters Matter](https://github.com/doheelab/backend-study/tree/master/Natural%20Language%20Processing/Hyperparameters%20Matter)
@@ -55,6 +51,14 @@
 - [Stochastic Differential Equation](https://github.com/doheelab/backend-study/blob/master/Mathematics/Stochastic%20Differential%20Equation.md) 
 
 - [Finite Differential Equation](https://github.com/doheelab/backend-study/blob/master/Mathematics/Finite%20Element%20Method.md)
+
+- [Likelihood](https://github.com/doheelab/backend-study/blob/master/Statistics/Likelihood.md)
+
+- [t-test](https://github.com/doheelab/backend-study/blob/master/Statistics/t-test.md)
+
+- [chi-square](https://github.com/doheelab/backend-study/blob/master/Statistics/chi-square.md)
+
+
 
 ## Data Visualization
 
