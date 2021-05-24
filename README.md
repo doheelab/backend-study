@@ -42,13 +42,19 @@
 
 - Variational AutoEncoder
 
+- Support Vector Machine
+
 ## Statistics
 
 - [KL-divergence](https://github.com/doheelab/backend-study/blob/master/Statistics/KL%20divergence.md)
 
 - [Hypothesis Test](https://github.com/doheelab/backend-study/blob/master/Statistics/Hypothesis%20Test.md)
 
-* [Bayes' Rule](https://github.com/doheelab/backend-study/blob/master/Statistics/Bayes%20Rule.md)
+- [Bayes' Rule](https://github.com/doheelab/backend-study/blob/master/Statistics/Bayes%20Rule.md)
+
+- [Stochastic Differential Equation](https://github.com/doheelab/backend-study/blob/master/Mathematics/Stochastic%20Differential%20Equation.md) 
+
+- [Finite Differential Equation](https://github.com/doheelab/backend-study/blob/master/Mathematics/Finite%20Element%20Method.md)
 
 ## Data Visualization
 
