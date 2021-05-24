@@ -50,7 +50,9 @@
 
 - [Stochastic Differential Equation](https://github.com/doheelab/backend-study/blob/master/Mathematics/Stochastic%20Differential%20Equation.md) 
 
-- [Finite Differential Equation](https://github.com/doheelab/backend-study/blob/master/Mathematics/Finite%20Element%20Method.md)
+- [Finite Element Method](https://github.com/doheelab/backend-study/blob/master/Mathematics/Finite%20Element%20Method.md)
+
+- [Finite Difference Method](https://github.com/doheelab/backend-study/blob/master/Mathematics/Finite%20Difference%20Method.md)
 
 - [Likelihood](https://github.com/doheelab/backend-study/blob/master/Statistics/Likelihood.md)
 

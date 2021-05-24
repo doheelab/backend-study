@@ -28,6 +28,3 @@ The FEM then uses variational methods from the calculus of variations to approxi
 
 FEA is a good choice for analyzing problems over complicated domains (like cars and oil pipelines), when the domain changes (as during a solid-state reaction with a moving boundary), when the desired precision varies over the entire domain, or when the solution lacks smoothness. 
 
-## Illustrative problems P1 and P2
-
-
