@@ -7,11 +7,11 @@ $$
 P(H|E) = \frac{P(E|H)P(H)}{P(E)}
 $$
 
-$P(H)$: 사전 확률, $P(H|E)$: 사후 확률
+$P(H)$: 사전 확률, $P(H|E)$: 사후 확률, $P(E|H)$: 가능도
 
 새로운 정보(E)를 토대로 어떤 사건(H)이 발생했다는 주장에 대한 신뢰도를 갱신해 나가는 방법이다.
 
-> 가능도 (Likelihood): 관찰을 통해 얻은 모수의 확률 분포
+> 가능도 (Likelihood): 모수를 따르는 분포가 주어진 관측값(E)에 대하여 부여하는 확률
  
 > Posterior = (Likelihood $\times$ Prior)/Evidence
 
