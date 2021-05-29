@@ -47,7 +47,7 @@ P(x_k|C_k) := \frac{Count(x_k, C_k)+\alpha}{N+\alpha*K},
 $$
 - $\alpha$: the smoothing parameter
 - $K$: # of dim
-- $N$: $|C_k|$
+- $N$: $|C_k|$ 
 
 
 ## 참고자료
