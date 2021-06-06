@@ -44,6 +44,17 @@ $$
 
 사후 확률 (밀도)이 가능도 (Likelihood)과 사전확률에 비례한다.
 
+
+## MAP
+
+Posterior는 Prior와 Likelihood에 비례한다.
+
+$$
+\theta_{MAP} = \argmax_{\theta} \sum_i \log p(x_i|\theta)p(\theta)
+$$
+
+$p(\theta)$가 상수함수라면 MAP는 MLE가 된다. 따라서 MLE는 MAP의 special case이다.
+
 ## Reference
 
 https://ko.wikipedia.org/wiki/%EA%B0%80%EB%8A%A5%EB%8F%84
