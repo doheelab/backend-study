@@ -22,7 +22,7 @@
 도커를 사용하는 개발자는 각 컨테이너들이 어떻게 설계되고, 지정한 곳에 어떻게 설치가 되며, 어떤 업무를 수행할지 하나하나 명시하기 때문에, 다른 컴퓨터 환경에서도 같은 환경을 구성할 수 있다.
 
 
-## 용어 정리
+## 기본 용어 정리
 
 1. 컨테이너(Container)
 
@@ -30,48 +30,93 @@
 
 2. 이미지(Image)
 
-이미지는 어플리케이션을 실행하기 위한 모든 파일시스템을 포함하며, 동일한 컨테이너를 찍어내기 위한 틀입니다.
+이미지는 컨테이너를 찍어내기 위한 틀이며, 어플리케이션을 실행하기 위한 모든 파일시스템을 포함합니다.
 
 3. 도커파일(Dockerfile)
 
-도커파일은 명령어들로 이루어진 스크립트 파일이며, 이미지를 생성하기 위해 사용됩니다.
-
-4. 컨테이너 볼륨(Container Volumes)
-
-컨테이너의 파일시스템 경로를 호스트 머신에 연결시켜주는 기능입니다. 
-이를 통해 컨테이너에서의 변경사항은 호스트 머신에 반영됩니다. 
+도커파일은 명령어들로 이루어진 스크립트 파일이며, 이미지를 생성(빌드)하기 위해 사용됩니다.
 
 
+## Dockerfile을 사용하여 이미지와 컨테이너 만들기
 
-
-
-## docker 명령어
+먼저 다음과 같은 도커파일을 만들어봅니다.
 
 ```
-docker run -d -p 80:80 dockersamples/101-tutorial
+FROM node:10-alpine                  # 사용할 이미지
+WORKDIR /app                         # 작업 폴더 지정
+COPY . .                             # 현재 폴더의 파일을 WORKDIR로 복사
+RUN yarn install --production        # 명령어 실행 (새로운 이미지 생성)
+CMD ["node", "/app/src/index.js"]    # 명령어 실행 (default 명령 설정)
+```
+
+이미지를 만들기 위해서 `docker build` 명령어를 사용합니다.
+
+```
+docker build -t docker-101 .
+```
+
+생성한 이미지를 통해 새로운 컨테이너를 만듭니다.
+
+```
+docker run -dp 3000:3000 docker-101
 ```
 
 각 flag의 설명은 다음과 같습니다.
 
 - `-d` detached mode의 사용, background에서 동작
-- `-p 80:80` host의 80번 포트를 컨테이너의 80번 포트에 연결
-- `dockersamples/101-tutorial` 이미지명
+- `-p 3000:3000` host의 3000번 포트를 컨테이너의 3000번 포트에 연결
+- `docker-101` 이미지명
 
-**Tip:** `docker run -dp 80:80 dockersamples/101-tutorial`을 이용하면 -d, -p를 한번에 실행할 수 있습니다.
+## Docker Hub에 이미지 푸시하기
+
+Docker Hub에 로그인 후, Repository를 생성합니다.
+이후 3가지 단계(로그인, 태그, 푸시)를 따라서 이미지를 푸시할 수 있습니다.
+
+1. 로그인하기
+```
+docker login -u {YOUR-USER-NAME}
+```
+
+2. 태그하기
+```
+docker tag {IMAGE-NAME} {YOUR-USER-NAME}/{REPO-NAME}
+```
+
+3. 푸시하기
+```
+docker push {YOUR-USER-NAME}/{REPO-NAME}
+```
 
 
 
-## Docker 용어 정리
+## 볼륨(Volume)
 
-1. docker hub
+볼륨은 컨테이너의 파일시스템 경로를 호스트 머신과 연결하는 기능입니다.
+볼륨은 크게 두 가지 타입이 있습니다.
 
-개발할 때 필요한 환경들을 '이미지'란 형태로 찾을 수 있다.
-이미지란 리눅스의 특정 상태를 캡쳐한 것이라고 한 것이다.
-이미지는 컨테이너를 찍어내는 틀이다.
+### Named Volume
 
-docker run -it node
+named volume을 사용하면, 도커가 지정한 공간에 데이터를 저장하여, 컨테이너가 재시작되어도 데이터를 보존할 수 있습니다.
 
- 2. -v, COPY의 차이
+1. `docker volume create` 명령어를 사용하여 볼륨을 생성합니다.
+
+```
+docker volume create todo-db
+```
+
+2. 컨테이너를 실행할 때, `-v` 플래그를 사용하여 볼륨을 지정합니다.
+
+```
+docker run -dp 3000:3000 -v todo-db:/etc/todos docker-101
+```
+
+### bind mount
+
+bind mount를 사용하면, 우리는 호스트 머신의 mountpoint를 직접적으로 컨트롤할 수 있습니다.
+
+
+
+ 1. -v, COPY의 차이
 
 COPY는 RUN처럼 이미지를 생성하는 과정에서 해당 이미지 안에 특정 파일을 미리 넣어두는 것
 
