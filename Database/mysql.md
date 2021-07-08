@@ -242,6 +242,7 @@ ALTER TABLE table_name
 DROP INDEX `unique_index`
 ```
 
+
 ## 참고자료
 
 [1] https://wakestand.tistory.com/451
