@@ -10,7 +10,8 @@ H &= \sum_i {p_i \log_2 \frac{1}{p_i}} \\
 $$
 
 ## Cross Entropy (negative log likelihood)
-- CE는 항상 양수이며, Entropy보다 크다.
+- KL divergence에 Entropy를 더한 값
+- CE는 항상 양수이며, 항상 Entropy보다 크다.
   
 $$
 \begin{aligned}
