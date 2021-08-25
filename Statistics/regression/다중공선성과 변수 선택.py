@@ -1,4 +1,3 @@
-from statsmodels.stats.outliers_influence import variance_inflation_factor
 from matplotlib import pyplot as plt
 import statsmodels.api as sm
 import seaborn as sns
@@ -51,16 +50,24 @@ for i in range(10):
     df_train, df_test, result = get_model1(i)
     test1.append(calc_r2(df_test, result))
 
-test1
+# 과최적화가 발생했음을 알 수 있다 val < 1
+print(test1)
 
-# VIF를 계산
+
+# (해결방법)
+# 변수 선택법으로 의존적인 변수 삭제
+# PCA(principal component analysis) 방법으로 의존적인 성분 삭제
+# 정규화(regularized) 방법 사용
+
+# VIF 계산하기
+from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 vif = pd.DataFrame()
 vif["VIF Factor"] = [
     variance_inflation_factor(dfX.values, i) for i in range(dfX.shape[1])
 ]
 vif["features"] = dfX.columns
-vif
+print(vif)
 
 # 상관계수와 VIF를 사용하여 독립 변수를 선택하면 GNP, ARMED, UNEMP 세가지 변수만으로도 비슷한 수준의 성능이 나온다는 것을 알 수 있다.
 
