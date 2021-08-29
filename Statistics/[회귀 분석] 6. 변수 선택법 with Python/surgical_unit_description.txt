@@ -1,0 +1,14 @@
+Blood_Clotting_Score : 혈액 응고 테스트 점수
+Prognostic_Index : 예측 지수
+Enzyme_Test : 효소 기능 테스트 점수
+Liver_Test : 간기능 테스트 점수
+Age : 연령
+Gender : 성별 0 = 남자, 1 = 여자
+
+Alc : 알콜 사용 이력
+없음 : Alc_Mod = 0, Alc_Heavy = 0
+적당 : Alc_Mod = 1, Alc_Heavy = 0
+심각 : Alc_Mod = 0, Alc_Heavy = 1
+
+Survival_Time : 생존 시간
+Log_ST : 로그 생존 시간
