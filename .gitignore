@@ -1,2 +1,9 @@
 save/
 Traiding/save/
+input/
+**/input/
+__pycache__/
+**/__pycache__/
+
+*.pyc
+**/tmp/
